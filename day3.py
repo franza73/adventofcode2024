@@ -14,18 +14,17 @@ def process(data_file):
     enabled = True
     with open(data_file, 'r', encoding="ascii") as file:
         for line in file.readlines():
-            line = line.replace('do()', '\nDO\n')
-            line = line.replace('don\'t()', '\nDONT\n')
             for line in line.splitlines():
-                if line == 'DO':
-                    enabled = True
-                elif line == 'DONT':
-                    enabled = False
-                for a, b in re.findall(r'mul\((\d+),(\d+)\)', line):
-                    prod = int(a) * int(b)
-                    total += prod
-                    if enabled:
-                        discounted_total += prod
+                for cmd, a, b in re.findall(r'(do\(\)|don\'t\(\)|mul\((\d+),(\d+)\))', line):
+                    if cmd == 'do()':
+                        enabled = True
+                    elif cmd == 'don\'t()':
+                        enabled = False
+                    else:
+                        prod = int(a) * int(b)
+                        total += prod
+                        if enabled:
+                            discounted_total += prod
     return total, discounted_total
 
 
