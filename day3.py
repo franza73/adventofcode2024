@@ -15,7 +15,8 @@ def process(data_file):
     with open(data_file, 'r', encoding="ascii") as file:
         for line in file.readlines():
             for line in line.splitlines():
-                for cmd, a, b in re.findall(r'(do\(\)|don\'t\(\)|mul\((\d+),(\d+)\))', line):
+                regex = r'(do\(\)|don\'t\(\)|mul\((\d+),(\d+)\))'
+                for cmd, a, b in re.findall(regex, line):
                     if cmd == 'do()':
                         enabled = True
                     elif cmd == 'don\'t()':
