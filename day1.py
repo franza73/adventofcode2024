@@ -35,4 +35,6 @@ if __name__ == "__main__":
     FILE = 'day1.txt'
     sol1, sol2 = process(FILE)
     print('First solution:', sol1)
+    assert sol1 == 3574690
     print('Second solution:', sol2)
+    assert sol2 == 22565391
