@@ -17,7 +17,7 @@ def process(data_file):
         if res > vals[-1] and _eval1(res - vals[-1], vals[:-1]):
             return True
         return False
-    
+
     def _eval2(res, vals):
         ''' Second evaluation method '''
         if len(vals) == 1:
@@ -31,7 +31,7 @@ def process(data_file):
             if m == 0 and _eval2(d, vals[:-1]):
                 return True
         return False
-    
+
     res1 = res2 = 0
     with open(data_file, 'r', encoding="ascii") as file:
         for line in file.readlines():
@@ -42,7 +42,7 @@ def process(data_file):
                 if _eval1(res, vals):
                     res1 += res
                 if _eval2(res, vals):
-                    res2 += res 
+                    res2 += res
     return res1, res2
 
 
